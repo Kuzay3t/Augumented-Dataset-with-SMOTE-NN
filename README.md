@@ -5,14 +5,32 @@ By: Your Name
 Repository: Pipeline-Leak-Detection-ML
 📘 About
 
-This project builds an end-to-end machine learning pipeline for detecting and localizing pipeline leaks using CFD-based physics-derived synthetic data.
-It includes full data cleaning, physics-based augmentation, feature engineering, model training, and evaluation using Random Forest, XGBoost, and Neural Networks.
+🧪 Augmented Dataset for Pipeline Leak Localization (Physics-Guided ML)
+🔬 Pipeline Leak Localization Using Physics-Guided Machine Learning
 
-The goal is to merge domain physics and machine learning to improve leak localization accuracy in pipeline networks.
+Author: Your Name
+Repository: Augmented-Dataset-with-SMOTE-NN
+
+📘 About
+
+This project develops an end-to-end machine learning pipeline for detecting and localizing pipeline leaks using CFD-derived physics-based synthetic data.
+It includes:
+
+Data cleaning (scientific notation, formatting issues)
+
+Physics-guided augmentation
+
+Feature engineering based on fluid-mechanics
+
+Multi-model training (RF, XGBoost, MLP)
+
+Model evaluation and comparison
+
+The goal is to combine domain physics + machine learning to improve leak localization accuracy in pipeline systems.
 
 ⏳ Time Spent
 
-Dataset cleaning & parsing: X hours
+Data cleaning & parsing: X hours
 
 Physics-guided augmentation: X hours
 
@@ -22,13 +40,13 @@ Model training & evaluation: X hours
 
 Documentation & repo setup: X hours
 
-(Fill in your actual time spent.)
+(Replace “X” with your actual numbers.)
 
-⭐ Required Features
+✅ Required Features
 
 Clean and preprocess pipeline flow data
 
-Parse scientific notation data (e.g., “3.13 ×10⁻⁴”)
+Parse scientific notation (e.g., “3.13 ×10⁻⁴”)
 
 Generate physics-guided synthetic dataset using CFD leak model
 
@@ -36,81 +54,82 @@ Engineer fluid-mechanics-based features (ΔP_D, v², DP/Q, etc.)
 
 Train multi-output regression models
 
-Evaluate models using MAE, RMSE, and R²
+Evaluate using MAE, RMSE, and R²
 
-Ensure code follows PEP-8 conventions
+Follow PEP-8 style conventions
 
-Add clear comments and readable variable names
+Add comments and readable variable names
 
 ⭐ Optional Features
 
-Multi-flow-rate data generation for two-leak localization
+Multi-flow-rate synthetic dataset for two-leak localization
 
-Model explainability (SHAP values, feature importance)
+Explainability (SHAP, feature importance)
 
-Hyperparameter tuning (GridSearch / Optuna)
+Hyperparameter tuning (GridSearch, Optuna)
 
-Interactive plots
+Interactive visualization (Plotly, Matplotlib)
 
-Deploying the model as an API or Streamlit app
+Deploy ML model as API or Streamlit dashboard
 
 📝 Notes
 
-Physics equations from CFD research were used to create a synthetic dataset consistent with real fluid-mechanics behavior.
+CFD equations were used to generate synthetic data consistent with real fluid-mechanics.
 
-Leak localization from single-pressure measurements is a nonlinear inverse problem; therefore, physics-based features are crucial.
+Leak localization from single-pressure measurements is a nonlinear inverse problem; physics-based features are essential.
 
-Extensive data cleaning was required due to unicode scientific notation and inconsistent formatting.
+Unicode scientific notation required extensive custom cleaning.
 
-🔗 Relevant Documentation and References
+📚 Relevant Documentation
 
-CFD Leak Detection Paper (primary reference):
+CFD Leak Detection Paper (Primary Reference):
 https://doi.org/10.1016/j.jpse.2022.02.001
 
 XGBoost Documentation: https://xgboost.readthedocs.io
 
 Scikit-Learn Documentation: https://scikit-learn.org
 
-PEP-8 Style Guide: https://peps.python.org/pep-0008/
+PEP-8 Guidelines: https://peps.python.org/pep-0008/
 
 📄 License
 
-This project is licensed under the MIT License.
-Feel free to use, modify, and distribute with attribution.
+This repository is licensed under the MIT License.
 
 💡 Inspiration
 
-Fluid dynamics research in pipeline leak detection
+CFD-based leak detection research
 
-CFD simulation-based anomaly detection
+Pipeline monitoring systems
 
-Machine learning feature engineering inspired by engineering equations
+Physics-guided machine learning
 
-🧭 What It Does
+Synethetic data generation in engineering
 
-This project:
+🔍 What It Does
 
-Cleans real pipeline flow measurement data
+Cleans real pipeline flow measurement datasets
 
 Parses complex scientific formats into numeric values
 
-Uses CFD equations to generate 5000+ synthetic samples
+Derives baseline pressure drop per inflow rate
 
-Engineers advanced physics-based features
+Generates 5000+ physics-consistent synthetic samples
 
-Trains ML models to predict leak location(s)
+Engineers domain-specific features
 
-Evaluates model performance using engineering-relevant metrics
+Trains ML models to predict leak positions
 
-🛠️ How We Built It
+Evaluates using engineering-relevant metrics
 
-Loaded raw pipeline dataset
+🏗️ How We Built It
 
-Cleaned all columns (unicode scientific notation, commas, type conversions)
+Loaded raw CFD + experiment dataset
 
-Computed baseline pressure drop for each inflow rate
+Cleaned unicode scientific notation, commas, and type inconsistencies
 
-Generated physics-consistent synthetic data using the CFD equation:
+Computed baseline pressure drops
+
+Generated physics-consistent synthetic data using CFD formula:
 
 Δ
 𝑃
@@ -131,7 +150,9 @@ sin
 )
 +
 𝑐
-𝑒
+exp
+⁡
+(
 −
 (
 𝑤
@@ -139,6 +160,7 @@ sin
 2
 )
 2
+)
 ΔP
 D
 	​
@@ -151,72 +173,78 @@ L
 2
 	​
 
-)+ce
-−(wL
+)+cexp(−(wL
 2
 	​
 
 )
 2
+)
 
-Engineered features such as ΔP_D, v², ΔP/Q, ΔP/v, total pressure
+Engineered physics-based features
 
-Split dataset into train/test sets and scaled inputs
+Split, scaled, and trained ML models
 
-Trained RandomForestRegressor, XGBRegressor, and MLPRegressor
+Compared RF, XGBoost, and MLP
 
-Compared accuracy, generalization, and model behavior
+Documented full workflow
 
-Documented the full pipeline and exported final results
+🧱 Challenges We Ran Into
 
-⚠️ Challenges We Ran Into
+Cleaning unicode scientific notation (×, ⁻, ⁴)
 
-Cleaning scientific notation with unicode characters (×, ⁻, ⁴)
+Mapping synthetic inflow rates to correct baseline pressures
 
-Mapping synthetic inflow rates to correct baseline pressure values
+Avoiding physically invalid synthetic pressures
 
-Preventing floating-point mismatches during augmentation
+Preventing ML overfitting
 
-Avoiding physically incorrect synthetic pressure values
+Handling nonlinear coupling between two leak locations
 
-Handling the nonlinear coupling between two leak locations
+Structuring large datasets for training
 
-Preventing model overfitting during training
+🏆 Accomplishments We're Proud Of
 
-🏆 Accomplishments We’re Proud Of
+Fully physics-guided synthetic data generation
 
-Successfully implemented physics-guided augmentation
+Correct implementation of CFD leak formula
 
-Created a fully consistent synthetic dataset matching CFD behavior
+Successful feature-engineering for fluid mechanics
 
-Engineered domain-specific features that dramatically improve model learning
+Reproducible ML pipeline with clean code
 
-Built a structured, reproducible ML pipeline suitable for academic or industry use
+Professional GitHub documentation
 
-Ensured clean, readable, PEP-8-compliant Python code
+📘 What We Learned
 
-📚 What We Learned
+Importance of physics-informed ML
 
-The importance of physics in machine learning workflows
+Feature engineering > Model complexity
 
-Why feature engineering can matter more than the model itself
+Cleaning scientific data reliably
 
-How to clean highly inconsistent scientific datasets
+Challenges of inverse problems
 
-How to augment data responsibly (not just random noise)
-
-Why inverse problems (like leak localization) require multiple measurements
-
-How to structure a professional ML repository for reproducibility
+How to structure ML repos professionally
 
 🚀 What’s Next
 
-Implement multi-flow-rate augmentation for true two-leak detection
+Multi-flow-rate data for two-leak localization
 
-Add deep-learning-based models (LSTM, CNN surrogate models)
+Deep learning surrogate models
 
-Build a real-time leak detection dashboard with Streamlit
+API or dashboard integration
 
-Integrate the model into a real pipeline monitoring API
+Real-time monitoring use case
 
-Expand dataset to include pipe aging, corrosion, and variable leak sizes
+Sensitivity analysis and uncertainty quantification
+
+🔗 Useful Links
+
+Research Paper
+
+Dataset Files
+
+Model Training Notebooks
+
+Plots & Visualizations
